@@ -106,14 +106,11 @@ def build_report(cursor, user, df):
         row["Дата начала мониторинга"] = start.replace(tzinfo=pytz.UTC).astimezone(pytz.timezone("Asia/Vladivostok")).strftime('%d.%m.%Y')
 
         for record in cursor.fetchall():
-            print(record)
             category = record[2]
             value = record[1]
 
             if record[-2]:
                 alert = True
-
-                print("-- ", record[-2])
 
             if category == 25: #temp
                 row["Температура"] = float(value)
@@ -135,7 +132,6 @@ def build_report(cursor, user, df):
         if alert:
             row["Тревога"] = "!!!"
 
-        print(list(row.values()))
         df.loc[len(df)] = list(row.values())
 
 def get_users(cursor):
