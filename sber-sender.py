@@ -53,7 +53,9 @@ def send_report(cursor):
 
     if len(df):
         filename = save(df)
-        send_mail(EMAIL, ["roctbb@gmail.com"], "Ланта: отчет дистанционного мониторинга COVID-19", "", [filename], username=EMAIL, password=EMAIL_PASSWORD, server=EMAIL_SERVER)
+        send_mail(EMAIL, RECEIVERS, "Ланта: отчет дистанционного мониторинга COVID-19", "Отчет во вложении.", [filename], username=EMAIL, password=EMAIL_PASSWORD, server=EMAIL_SERVER)
+
+        print("report sent")
 
 
 def save(df):
