@@ -86,7 +86,7 @@ def save(df):
 def build_report(cursor, user, df):
     user_id, birthday, name, start = user
     now = (datetime.now() + timedelta(days=-1)).strftime('%d-%m-%Y 21:00:00')
-    q = f"SELECT \"group\" FROM medical_records WHERE user_id = {user_id} and created_at > '{now}' order by created_at"
+    q = f"SELECT \"group\" FROM medical_records WHERE user_id = {user_id} and created_at > '{now}' and category_id != 64 order by created_at"
     cursor.execute(q)
     result_groups = []
 
